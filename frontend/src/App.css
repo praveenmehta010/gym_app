@@ -1,0 +1,16 @@
+.App {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #eaeaea;
+  min-height: 100vh;
+  color: #121212;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 20px;
+}
+
