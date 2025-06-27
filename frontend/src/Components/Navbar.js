@@ -1,26 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <nav className="navbar">
-      <div className="navbar-logo">🏋️ GymZone</div>
-      <div className="navbar-toggle" onClick={() => setIsOpen(!isOpen)}>
-        ☰
+      <div className="logo">
+        <Link to="/">🏋️ GymZone</Link>
       </div>
-      <ul className={isOpen ? "navbar-links active" : "navbar-links"}>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/login">Login</Link></li>
-        <li><Link to="/signup">Signup</Link></li>
+      <ul className="nav-links">
+        <li><Link to="/">Gyms</Link></li>
+        <li><Link to="/trainers">Trainers</Link></li>
+        <li><Link to="#">Login</Link></li>
+        <li><Link to="#">Signup</Link></li>
       </ul>
     </nav>
   );
 };
 
 export default Navbar;
+
+
+
 
 
 

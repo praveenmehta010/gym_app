@@ -1,81 +1,49 @@
 import React, { useState } from "react";
 
 const Signup = () => {
-  const [formData, setFormData] = useState({
+  const [form, setForm] = useState({
     name: "",
     email: "",
-    password: ""
+    password: "",
   });
 
-  const handleChange = e => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`🟢 Signed up as: ${formData.name}`);
+    alert("Signup Successful!");
   };
 
   return (
-    <div style={styles.container}>
+    <div className="auth-container">
       <h2>Signup</h2>
-      <form onSubmit={handleSubmit} style={styles.form}>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="name"
-          placeholder="Full Name"
-          style={styles.input}
-          onChange={handleChange}
+          placeholder="Name"
           required
+          onChange={handleChange}
         />
         <input
           type="email"
           name="email"
           placeholder="Email"
-          style={styles.input}
-          onChange={handleChange}
           required
+          onChange={handleChange}
         />
         <input
           type="password"
           name="password"
           placeholder="Password"
-          style={styles.input}
-          onChange={handleChange}
           required
+          onChange={handleChange}
         />
-        <button type="submit" style={styles.button}>Signup</button>
+        <button type="submit">Signup</button>
       </form>
     </div>
   );
 };
 
-const styles = {
-  container: { marginTop: "80px", textAlign: "center" },
-  form: {
-    display: "inline-block",
-    textAlign: "left",
-    padding: "30px",
-    borderRadius: "8px",
-    background: "#f1f1f1"
-  },
-  input: {
-    display: "block",
-    marginBottom: "15px",
-    padding: "10px",
-    width: "250px",
-    borderRadius: "4px",
-    border: "1px solid #ccc"
-  },
-  button: {
-    padding: "10px 20px",
-    backgroundColor: "#28a745",
-    color: "white",
-    border: "none",
-    borderRadius: "4px",
-    cursor: "pointer"
-  }
-};
-
 export default Signup;
-

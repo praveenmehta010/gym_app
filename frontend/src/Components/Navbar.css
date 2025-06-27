@@ -1,60 +1,36 @@
 .navbar {
-  background-color: #111;
-  color: white;
-  padding: 15px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #121212;
+  padding: 15px 40px;
+  color: white;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 10;
 }
 
-.navbar-logo {
-  font-size: 1.8rem;
+.logo a {
+  font-size: 1.6rem;
   font-weight: bold;
+  color: white;
+  text-decoration: none;
 }
 
-.navbar-links {
+.nav-links {
   list-style: none;
   display: flex;
   gap: 30px;
-  transition: all 0.3s ease;
 }
 
-.navbar-links a {
+.nav-links a {
   color: white;
   text-decoration: none;
   font-size: 1rem;
+  transition: color 0.3s ease;
 }
 
-.navbar-links a:hover {
+.nav-links a:hover {
   color: #ff4d4d;
 }
 
-.navbar-toggle {
-  display: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-@media (max-width: 768px) {
-  .navbar-toggle {
-    display: block;
-  }
-
-  .navbar-links {
-    position: absolute;
-    top: 60px;
-    right: 0;
-    flex-direction: column;
-    background-color: #111;
-    width: 200px;
-    padding: 20px;
-    display: none;
-  }
-
-  .navbar-links.active {
-    display: flex;
-  }
-}

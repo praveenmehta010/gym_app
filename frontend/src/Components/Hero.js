@@ -4,10 +4,10 @@ import "./Hero.css";
 const Hero = () => {
   return (
     <div className="hero-container">
+      <div className="hero-overlay" />
       <div className="hero-content">
-        <h1>Transform Your Body</h1>
-        <p>Join the best gyms in your city. Track your progress. Stay fit.</p>
-        <button>Explore Gyms</button>
+        <h1>🏋️‍♂️ Welcome to GymZone</h1>
+        <p>Your fitness journey starts here!</p>
       </div>
     </div>
   );
