@@ -1,59 +1,61 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
 import Navbar from "./Components/Navbar";
 import Hero from "./Components/Hero";
 import GymCard from "./Components/GymCard";
-import Login from "./Components/Login";
-import Signup from "./Components/Signup";
+import GymDetail from "./Components/GymDetail";
+import TrainerCard from "./Components/TrainerCard";
+import ContactForm from "./Components/ContactForm";
+import "./App.css";
 
-function HomePage() {
-  return (
-    <>
-      <Hero />
-      <section
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          gap: "20px",
-          padding: "40px",
-          backgroundColor: "#f5f5f5",
-        }}
-      >
-        <GymCard
-          title="Iron Paradise"
-          location="Delhi"
-          image="https://source.unsplash.com/400x300/?gym"
-        />
-        <GymCard
-          title="Muscle Factory"
-          location="Mumbai"
-          image="https://source.unsplash.com/400x300/?fitness"
-        />
-        <GymCard
-          title="Beast Mode"
-          location="Bangalore"
-          image="https://source.unsplash.com/400x300/?workout"
-        />
-      </section>
-    </>
-  );
-}
+const Home = () => (
+  <>
+    <Hero />
+    <div className="card-section">
+      <GymCard
+        id={1}
+        name="Iron Paradise"
+        location="Delhi"
+        rank={5}
+        image="/images/gym1.jpg"
+      />
+      <GymCard
+        id={2}
+        name="Muscle Factory"
+        location="Mumbai"
+        rank={4}
+        image="/images/gym2.jpg"
+      />
+    </div>
+  </>
+);
+
+const Trainers = () => (
+  <>
+    <h2 style={{ textAlign: "center" }}>Meet Our Trainers</h2>
+    <div className="card-section">
+      <TrainerCard
+        name="Amit Rana"
+        specialty="Bodybuilding"
+        image="/images/trainer1.jpg"
+      />
+    </div>
+    <ContactForm />
+  </>
+);
 
 function App() {
   return (
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/gyms/:id" element={<GymDetail />} />
+        <Route path="/trainers" element={<Trainers />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
-
 
