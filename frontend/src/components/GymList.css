@@ -1,0 +1,17 @@
+.gym-list {
+  padding: 2rem;
+}
+
+.gym-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.gym-card {
+  background: #e0f7fa;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 220px;
+  padding: 1rem;
+}
