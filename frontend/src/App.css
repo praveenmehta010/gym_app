@@ -1,8 +1,10 @@
-.card-section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 30px;
-  gap: 20px;
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  font-family: Arial, sans-serif;
 }
 
+.App {
+  min-height: 100vh;
+}
