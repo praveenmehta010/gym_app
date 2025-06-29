@@ -1,32 +1,18 @@
 const express = require('express');
-// const http = require('http').Server(express);
-const mongoose = require('mongoose');
+const dotenv = require('dotenv').config();
+const connection = require('./config/database')
+const cors = require("cors");
+
 
 const app = express();
-const port = 3000;
-mongoose.connect("mongodb+srv://PraveenMehta:12345As@gymappdb.lxqn5oy.mongodb.net/?retryWrites=true&w=majority&appName=gymAppDb");
+const port = process.env.PORT
 
-// const User = require('./models/login');
+app.use(express.json());
+app.use(cors());
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.use('/api/users', require('./routes/userRouter'));
+
 
 app.listen(port, ()=>{
 console.log(`Server is running on port ${port}`)
 })
-
-
-// http.listen(3000, function(){
-//     console.log('Server is running ');
-// });
- 
-// async function userDetails(name, email) {
-//     await User.create({
-//             name : name,
-//             email : email
-
-//     });
-// }
-// userDetails()
-// userDetails("Praveen Mehta", "praveen@gmail.com")
