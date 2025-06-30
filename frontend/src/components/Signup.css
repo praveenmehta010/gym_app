@@ -21,3 +21,7 @@
   border: none;
 }
 
+.signup-container select {
+  margin-bottom: 1rem;
+  padding: 10px;
+}
