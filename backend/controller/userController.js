@@ -10,7 +10,7 @@ const TrainerDetails = require('../models/trainerSchema')
 // @route POST api/user
 // @access public
 const registerUser = asyncHandler(async (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     const { userName, name, emailId, password, userType, phoneNumber } = req.body;
     // console.log(req.body)
     if (!userName || !name || !emailId || !password || !userType || !phoneNumber) {
@@ -84,7 +84,7 @@ const loginUser = asyncHandler(async (req, res) => {
 // @desc Saving Gym Details
 // @route POST api/user
 // @access public
-const gymDetails = asyncHandler(async (req, res) => {
+const gymCreate = asyncHandler(async (req, res) => {
     const { gymName, gymLocation, gymImage, gymDescription, gymContact, gymTestimonial, gymRating } = req.body;
     if (!gymName || !gymLocation || !gymImage || !gymDescription || !gymContact || !gymTestimonial || !gymRating) {
         res.status(400);
@@ -114,7 +114,7 @@ const gymDetails = asyncHandler(async (req, res) => {
 // @access public
 const trainerDetails = asyncHandler(async(req, res)=>{
     // console.log(req.body)
-    const {tImage, tContact, tRating, tBio, tExpertise} = req.body;
+    const {tName, tImage, tContact, tRating, tBio, tExpertise} = req.body;
 
     if (!tImage || !tRating || !tBio || !tExpertise){
         res.status(400);
@@ -122,6 +122,7 @@ const trainerDetails = asyncHandler(async(req, res)=>{
     }
 
     const trainerDetails = await TrainerDetails.create({
+        tName,
         tImage, 
         tContact, 
         tRating, 
@@ -138,4 +139,30 @@ const trainerDetails = asyncHandler(async(req, res)=>{
     }
 });
 
-module.exports = { registerUser, loginUser, gymDetails, trainerDetails}
+// @desc Give Trainer Details List
+// @route GET api/user
+// @access public
+const trainerList = asyncHandler(async(req, res)=>{
+    const trainerDetailsForList = await TrainerDetails.find({},  "tName tExpertise tRating")
+    if (trainerDetailsForList) {
+        res.status(200).json(trainerDetailsForList);
+    }else{
+        res.status(404);
+        throw new Error('Trainer data for list was not found')
+    }
+});
+
+// @desc Give Trainer Details List
+// @route GET api/user
+// @access public
+const gymList = asyncHandler(async(req, res)=>{
+    const gymDetailsForList = await GymDetails.find({},  "gymName gymLocation gymRating")
+    if (gymDetailsForList) {
+        res.status(200).json(gymDetailsForList);
+    }else{
+        res.status(404);
+        throw new Error('Trainer data for list was not found')
+    }
+});
+
+module.exports = { registerUser, loginUser, gymDetails: gymCreate, trainerDetails, trainerList, gymList}

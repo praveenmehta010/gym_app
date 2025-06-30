@@ -1,22 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import "./GymList.css";
-
-const gyms = [
-  { id: 1, name: "Gold's Gym", location: "Delhi", rating: 4.5 },
-  { id: 2, name: "Fitness First", location: "Noida", rating: 4.2 },
-  { id: 3, name: "Cult Fit", location: "Gurgaon", rating: 4.7 },
-];
-
+// import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+  
 const GymList = () => {
+  const [gyms, setGyms] = useState([]);
+
+  useEffect(() => {
+    const fetchGyms = async () => {
+      try {
+        const res = await axios.get('http://localhost:3100/api/users/gym/list');
+        setGyms(res.data);
+      } catch (err) {
+        console.error("Failed to fetch trainers:", err);
+      }
+    };
+
+    fetchGyms();
+  }, []);
+
   return (
-    <div className="gym-list">
-      <h2>Nearby Gyms</h2>
-      <div className="gym-cards">
+    <div className="gym-list-container">
+      <h2 className="gym-title"> 🔥 Nearby Gyms</h2>
+      <div className="gym-grid">
         {gyms.map((gym) => (
-          <div className="gym-card" key={gym.id}>
-            <h3>{gym.name}</h3>
-            <p>📍 {gym.location}</p>
-            <p>⭐ {gym.rating}</p>
+          <div key={gym.id} className="gym-card" >
+            <h3>{gym.gymName}</h3>
+            <p>📍 {gym.gymLocation}</p>
+            <p>⭐ {gym.gymRating}</p>
           </div>
         ))}
       </div>
