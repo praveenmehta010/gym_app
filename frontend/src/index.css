@@ -1,11 +1,31 @@
-/* index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  transition: background 0.3s, color 0.3s;
+  @apply bg-gray-50 text-gray-800 font-sans;
 }
 
-body.dark {
-  background-color: #111;
-  color: #eee;
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
+::-webkit-scrollbar-track {
+  background: #f3f4f6;
+}
+::-webkit-scrollbar-thumb {
+  background: #f87171;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ef4444;
+}
+
+/* Buttons */
+.input {
+  @apply w-full px-4 py-2 border border-gray-300 rounded-md;
+}
+.btn-primary {
+  @apply bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded;
+}
+
