@@ -1,0 +1,102 @@
+[
+  {
+    "name": "Riku Hayashi",
+    "age": 29,
+    "gender": "Male",
+    "specialization": "Weight Loss",
+    "certifications": ["ACE Certified", "Nutrition Coach"],
+    "rating": 4.6,
+    "location": [28.6139, 77.209],
+    "img": "https://i.pinimg.com/originals/59/51/12/5951128b5ae79a7386dfb4fcf84e33e0.jpg"
+  },
+  {
+    "name": "Sakura Aoki",
+    "age": 26,
+    "gender": "Female",
+    "specialization": "Strength Training",
+    "certifications": ["NSCA-CPT"],
+    "rating": 4.8,
+    "location": [28.5355, 77.391],
+    "img": "https://i.pinimg.com/originals/01/53/15/0153152e18f943eb83f5de2b2d2c233d.jpg"
+  },
+  {
+    "name": "Takashi Inoue",
+    "age": 34,
+    "gender": "Male",
+    "specialization": "Cardio & HIIT",
+    "certifications": ["ISSA Certified", "CPR/AED"],
+    "rating": 4.7,
+    "location": [28.4089, 77.3178],
+    "img": "https://i.pinimg.com/originals/6c/ed/91/6ced91bb4f2dbbe3c18262189d6c893e.jpg"
+  },
+  {
+    "name": "Hina Yamamoto",
+    "age": 31,
+    "gender": "Female",
+    "specialization": "Yoga & Flexibility",
+    "certifications": ["RYT 200 Yoga Alliance", "Pilates Instructor"],
+    "rating": 4.9,
+    "location": [28.4595, 77.0266],
+    "img": "https://i.pinimg.com/originals/cf/45/30/cf45302fbbf40e1de7cf4adfcd5c0702.jpg"
+  },
+  {
+    "name": "Haruto Mori",
+    "age": 27,
+    "gender": "Male",
+    "specialization": "CrossFit",
+    "certifications": ["CrossFit L1 Trainer"],
+    "rating": 4.5,
+    "location": [28.7041, 77.1025],
+    "img": "https://i.pinimg.com/originals/c2/f5/2e/c2f52eae4bdb9a7df2f799f4e7df80a5.jpg"
+  },
+  {
+    "name": "Emi Nakamura",
+    "age": 30,
+    "gender": "Female",
+    "specialization": "Bodybuilding",
+    "certifications": ["ACE Certified", "Strength & Conditioning"],
+    "rating": 4.4,
+    "location": [28.6692, 77.4538],
+    "img": "https://i.pinimg.com/originals/b8/53/5e/b8535e1d20e4475cf6b609c73515bb79.jpg"
+  },
+  {
+    "name": "Yuto Fujimoto",
+    "age": 33,
+    "gender": "Male",
+    "specialization": "Athletic Performance",
+    "certifications": ["CSCS", "Biomechanics Expert"],
+    "rating": 4.6,
+    "location": [28.367, 77.3121],
+    "img": "https://i.pinimg.com/originals/f5/d0/33/f5d033b7de465aece5c749c3d3a86f2d.jpg"
+  },
+  {
+    "name": "Aya Tanaka",
+    "age": 25,
+    "gender": "Female",
+    "specialization": "Zumba & Dance Fitness",
+    "certifications": ["ZIN™ Licensed Zumba Instructor"],
+    "rating": 4.8,
+    "location": [28.7046, 77.1111],
+    "img": "https://i.pinimg.com/originals/fd/3f/14/fd3f14440146a3bfffdaf063ae43057b.jpg"
+  },
+  {
+    "name": "Kenta Suzuki",
+    "age": 28,
+    "gender": "Male",
+    "specialization": "Powerlifting",
+    "certifications": ["USAPL Certified", "CPR/AED"],
+    "rating": 4.7,
+    "location": [28.5962, 77.0461],
+    "img": "https://i.pinimg.com/originals/5d/1f/0e/5d1f0e4e5211f4e4445cd5527ac8c030.jpg"
+  },
+  {
+    "name": "Mika Kobayashi",
+    "age": 32,
+    "gender": "Female",
+    "specialization": "Rehab & Functional Training",
+    "certifications": ["Physiotherapist", "Functional Movement Specialist"],
+    "rating": 4.9,
+    "location": [28.4081, 77.521],
+    "img": "https://i.pinimg.com/originals/1a/76/5d/1a765dbd60a2c57b35b2926b41550a95.jpg"
+  }
+]

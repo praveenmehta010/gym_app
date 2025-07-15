@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const trainerDetails = new Schema({
+const trainerDataModule = new Schema({
     // userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     tName : {type:String, required:true},
     tImage: { type: String, required: true },
@@ -15,7 +15,7 @@ const trainerDetails = new Schema({
     tExpertise: String,
 })
 
-module.exports = mongoose.model("TrainerDetails", trainerDetails)
+module.exports = mongoose.model("trainerdata", trainerDataModule)
 
 
 /* Body 

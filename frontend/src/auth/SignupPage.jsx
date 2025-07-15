@@ -2,24 +2,47 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import axios from "axios";
+
 const SignupPage = () => {
   const [form, setForm] = useState({
     name: "",
     email: "",
     password: "",
-    role: "user",
+    userType: "user",
   });
   const navigate = useNavigate();
+
+
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // TODO: Handle sign-up logic
-    navigate("/user/dashboard");
-  };
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const response = await axios.post("http://localhost:3100/api/register", form);
+
+    if (response.status === 201 ) {
+// Navigate based on role
+      if (form.userType === "trainer") {
+        navigate("/trainer/dashboard");
+      } else {
+        navigate("/user/dashboard");
+      }
+    }
+     else {
+      alert("Signup failed. Try again.");
+    }
+  } 
+  catch (error) {
+    console.error("❌ Error during signup:", error.response?.data || error.message);
+    alert("Signup failed: " + (error.response?.data?.message || "SignUp Failed."));
+  }
+};
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-slate-800 to-slate-900">
@@ -57,7 +80,7 @@ const SignupPage = () => {
         />
         <select
           name="role"
-          value={form.role}
+          value={form.userType}
           onChange={handleChange}
           className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500"
         >

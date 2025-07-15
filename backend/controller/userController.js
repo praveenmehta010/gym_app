@@ -1,9 +1,10 @@
 const asyncHandler = require('express-async-handler');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const User = require('../models/userSchema');
-const GymDetails = require('../models/gymDetailsSchema')
+const userDataModel = require('../models/userSchema');
+const gymDataModel = require('../models/gymDetailsSchema')
 const TrainerDetails = require('../models/trainerSchema')
+const productDataModel = require('../models/productSchema')
 
 
 // @desc Register the user
@@ -11,34 +12,31 @@ const TrainerDetails = require('../models/trainerSchema')
 // @access public
 const registerUser = asyncHandler(async (req, res) => {
     // console.log(req.body)
-    const { userName, name, emailId, password, userType, phoneNumber } = req.body;
-    // console.log(req.body)
-    if (!userName || !name || !emailId || !password || !userType || !phoneNumber) {
+    const { name, email, password, userType} = req.body;
+    if (!name || !email || !password || !userType) {
         res.status(400);
         throw new Error("Registration Field are mandetory")
     }
 
-    const userAvailable = await User.findOne({ userName });
-    if (userAvailable) {
+    const emailAlreadyExist = await userDataModel.findOne({ email });
+    if (emailAlreadyExist) {
         res.status(400);
-        throw new Error("User name is already taken");
+        throw new Error("User email is already exist");
     }
 
     const hashedPassword = await bcrypt.hash(password, 10)
     // console.log(hashedPassword);
 
-    const user = await User.create({
-        userName,
+    const user = await userDataModel.create({
         name,
-        emailId,
+        email,
         userType,
-        phoneNumber,
         password: hashedPassword
     })
     // console.log(`user created : ${user}`)
 
     if (user) {
-        res.status(201).json({ "user id": user.id, "user email ": user.emailId })
+        res.status(201).json({ "user id": user.id, "user email ": user.email })
     }
     else {
         res.status(400);
@@ -46,24 +44,25 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 });
 
+
 // @desc Login the user
 // @route POST api/user
 // @access public
 const loginUser = asyncHandler(async (req, res) => {
-    const { userName, password } = req.body;
+    const { email, password } = req.body;
 
-    if (!userName || !password) {
+    if (!email || !password) {
         res.status(400);
         throw new Error("Loging Fields are mandetory");
     }
 
-    const user = await User.findOne({ userName });
+    const user = await userDataModel.findOne({ email });
     if (user && await bcrypt.compare(password, user.password)) {
         const accessToken = jwt.sign(
             {
                 user: {
-                    userName: user.userName,
-                    userEmail: user.emailId,
+                    userName: user.name,
+                    userEmail: user.email,
                     id: user.id
                 },
             },
@@ -71,7 +70,7 @@ const loginUser = asyncHandler(async (req, res) => {
             expiresIn: "10m"
         }
         );
-        res.status(200).json({ AccessToken: accessToken });
+        res.status(200).json({ AccessToken: accessToken, userType : user.userType });
     } else {
         res.status(401);
         throw new Error("Access denied")
@@ -139,11 +138,11 @@ const trainerDetails = asyncHandler(async(req, res)=>{
     }
 });
 
-// @desc Give Trainer Details List
+// @desc Get Trainer Data from Database
 // @route GET api/user
 // @access public
 const trainerList = asyncHandler(async(req, res)=>{
-    const trainerDetailsForList = await TrainerDetails.find({},  "tName tExpertise tRating")
+    const trainerDetailsForList = await TrainerDetails.find({},  "name specialization rating")
     if (trainerDetailsForList) {
         res.status(200).json(trainerDetailsForList);
     }else{
@@ -152,11 +151,11 @@ const trainerList = asyncHandler(async(req, res)=>{
     }
 });
 
-// @desc Give Trainer Details List
+// @desc Get Gym Details List
 // @route GET api/user
 // @access public
 const gymList = asyncHandler(async(req, res)=>{
-    const gymDetailsForList = await GymDetails.find({},  "gymName gymLocation gymRating")
+    const gymDetailsForList = await gymDataModel.find({},  "Title Desc Rating image");
     if (gymDetailsForList) {
         res.status(200).json(gymDetailsForList);
     }else{
@@ -165,4 +164,17 @@ const gymList = asyncHandler(async(req, res)=>{
     }
 });
 
-module.exports = { registerUser, loginUser, gymDetails: gymCreate, trainerDetails, trainerList, gymList}
+
+// @desc Get Products List
+// @route GET api/
+// @access public
+const productsData = asyncHandler(async(req, res)=>{
+    const productsDataList = await productDataModel.find({}, "id name price image category brand rating description");
+    if(productsDataList){
+        res.status(200).json(productsDataList)
+    }else{
+        res.status(404);
+        throw new Error('Products data was not found')
+    }
+});
+module.exports = { registerUser, loginUser, gymDetails: gymCreate, trainerDetails, trainerList, gymList, productsData}
